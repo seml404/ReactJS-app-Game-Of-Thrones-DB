@@ -1,0 +1,12 @@
+.main {
+  background: url('./game-of-thrones-poster_85627-1920x12001-1.jpg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100vh;
+}
+
+.container {
+  max-width: 200px;
+  margin: 0 auto;
+  background-color: #fff;
+}
