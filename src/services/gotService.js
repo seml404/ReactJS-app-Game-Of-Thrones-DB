@@ -14,7 +14,9 @@ export default class GotService {
   }
 
   async getAllCharacters() {
-    const result = await this.getResourse(`/characters?page=5&pageSize=10`);
+    const result = await this.getResourse(
+      `/characters?page=${Math.floor(Math.random() * 100)}&pageSize=10`
+    );
     return result.map(this._transformCharacter);
   }
 
@@ -38,7 +40,9 @@ export default class GotService {
         res[key] = "No info";
       }
     }
+    res.url = res.url.replace(/\D/g, "");
     return {
+      url: res.url,
       name: res.name,
       gender: res.gender,
       born: res.born,

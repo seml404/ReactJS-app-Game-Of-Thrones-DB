@@ -1,9 +1,15 @@
 import React, { Component } from "react";
-// import "./charDetails.css";
+
+// import "./randomChar.css";
 
 import GotService from "../../services/gotService";
 import Spinner from "../spinner";
 export default class RandomChar extends Component {
+  constructor(props) {
+    super(props);
+    this.updateChar = this.updateChar.bind(this);
+  }
+
   state = {
     info: {},
     loading: true,
@@ -14,19 +20,26 @@ export default class RandomChar extends Component {
 
   componentDidMount() {
     this.updateChar();
+    this.timerId = setInterval(() => {
+      this.updateChar();
+    }, 1500);
+  }
+  componentWillUnmount() {
+    console.log("unmounted");
+    clearInterval(this.timerId);
   }
 
-  onError = (error) => {
-    this.setState({ error: true, loading: false });
-  };
+  // onError = (error) => {
+  //   this.setState({ error: true, loading: false });
+  // };
 
   async updateChar() {
     try {
-      const id = Math.floor(Math.random() * 14134532450 + 1);
+      const id = Math.floor(Math.random() * 141 + 1);
       let info = await this.gotService.getCharacter(id);
       this.setState({ info, loading: false });
     } catch (error) {
-      this.onError(error);
+      console.log(error);
     }
   }
 
