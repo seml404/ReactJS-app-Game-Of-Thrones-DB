@@ -2,7 +2,7 @@ export default class GotService {
   constructor() {
     this._apiBase = "https://www.anapioficeandfire.com/api";
   }
-  async getResourse(url) {
+  getResourse = async (url) => {
     const res = await fetch(`${this._apiBase}${url}`);
     if (!res.ok) {
       throw new Error(`this is custom error text, status ${res.status}`);
@@ -11,30 +11,30 @@ export default class GotService {
     console.log(`this is data from funcitoin:`);
     console.dir(data);
     return data;
-  }
+  };
 
-  async getAllCharacters() {
+  getAllCharacters = async () => {
     const result = await this.getResourse(
       `/characters?page=${Math.floor(Math.random() * 100)}&pageSize=10`
     );
     return result.map(this._transformCharacter);
-  }
+  };
 
-  async getCharacter(id) {
+  getCharacter = async (id) => {
     const result = await this.getResourse(`/characters/${id}`);
     return this._transformCharacter(result);
-  }
-  getAllHouses() {
+  };
+  getAllHouses = async () => {
     return this.getResourse(`/houses`);
-  }
-  getHouse(id) {
+  };
+  getHouse = async (id) => {
     return this.getResourse(`/houses/${id}`);
-  }
-  getAllBooks() {
+  };
+  getAllBooks = async () => {
     return this.getResourse(`/books`);
-  }
+  };
 
-  _transformCharacter(res) {
+  _transformCharacter = (res) => {
     for (let key in res) {
       if (!res[key]) {
         res[key] = "No info";
@@ -49,7 +49,7 @@ export default class GotService {
       died: res.died,
       culture: res.culture,
     };
-  }
+  };
 }
 
 // const got = new GotService();

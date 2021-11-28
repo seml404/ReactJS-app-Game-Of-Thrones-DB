@@ -4,10 +4,12 @@ import React, { Component } from "react";
 
 import GotService from "../../services/gotService";
 import Spinner from "../spinner";
+import ErrorMessage from "../errorMessage";
 export default class RandomChar extends Component {
   constructor(props) {
     super(props);
     this.updateChar = this.updateChar.bind(this);
+    this.onError = this.onError.bind(this);
   }
 
   state = {
@@ -29,28 +31,34 @@ export default class RandomChar extends Component {
     clearInterval(this.timerId);
   }
 
-  // onError = (error) => {
-  //   this.setState({ error: true, loading: false });
-  // };
+  onError = (err) => {
+    this.setState({ error: true, loading: false });
+  };
 
   async updateChar() {
     try {
-      const id = Math.floor(Math.random() * 141 + 1);
+      const id = Math.floor(Math.random() * 100);
       let info = await this.gotService.getCharacter(id);
       this.setState({ info, loading: false });
     } catch (error) {
-      console.log(error);
+      this.onError();
     }
   }
 
   render() {
-    const { loading } = this.state;
-    const toBeRendered = loading ? (
-      <Spinner />
-    ) : (
+    const { loading, error } = this.state;
+    const errorMessage = error ? <ErrorMessage /> : null;
+    const spinner = loading ? <Spinner /> : null;
+    const toBeRendered = !(loading || error) ? (
       <MainContent values={this.state.info} />
+    ) : null;
+    return (
+      <div className="char-details rounded">
+        {errorMessage}
+        {spinner}
+        {toBeRendered}
+      </div>
     );
-    return <div className="char-details rounded">{toBeRendered}</div>;
   }
 }
 
