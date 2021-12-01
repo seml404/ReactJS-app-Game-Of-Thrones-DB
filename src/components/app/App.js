@@ -54,11 +54,55 @@ export default class App extends Component {
     ) : (
       <div>please, push the button</div>
     );
+    // return (
+    // <div className="main">
+    {
+      /* <Container>
+        <Header />
+      </Container> */
+    }
+    {
+      /* <Container className="container-main">
+          <Row>
+            <Col lg={{ size: 5, offset: 0 }}>{content}</Col>
+          </Row>
+          <Button onClick={this.toggleRandomChar}>
+            {showRandom ? "Hide" : " Show"} random character
+          </Button> */
+    }
+    {
+      /* <Row>
+            <Col md="6">
+              <ItemList onCharSelected={this.selectChar} />
+            </Col>
+            <Col md="6">
+              <CharDetails charId={this.state.charSelected} />
+            </Col>
+          </Row> */
+    }
+    {
+      /* <CharacterPage />
+
+          <Row>
+            <Col md="6">
+              <ItemList
+                getData={this.gotService.getAllBooks}
+                renderItem={(item) => `${item.name}, (name of book)`}
+              />
+            </Col>
+            <Col md="6">
+              <ItemList
+                getData={this.gotService.getAllHouses}
+                renderItem={(item) => `${item.name}, (name of house)`}
+              />
+            </Col>
+          </Row>
+        </Container>
+      </div> */
+    }
+
     return (
       <div className="main">
-        {/* <Container>
-        <Header />
-      </Container> */}
         <Container className="container-main">
           <Row>
             <Col lg={{ size: 5, offset: 0 }}>{content}</Col>
@@ -66,16 +110,7 @@ export default class App extends Component {
           <Button onClick={this.toggleRandomChar}>
             {showRandom ? "Hide" : " Show"} random character
           </Button>
-          {/* <Row>
-            <Col md="6">
-              <ItemList onCharSelected={this.selectChar} />
-            </Col>
-            <Col md="6">
-              <CharDetails charId={this.state.charSelected} />
-            </Col>
-          </Row> */}
           <CharacterPage />
-
           <Row>
             <Col md="6">
               <ItemList
