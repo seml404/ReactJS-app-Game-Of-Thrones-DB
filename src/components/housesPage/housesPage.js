@@ -36,18 +36,16 @@ export default class CharacterPage extends Component {
     const itemList = (
       <ItemList
         onItemSelected={this.selectItem}
-        getData={this.gotService.getAllCharacters}
-        renderItem={({ name, gender }) => (
+        getData={this.gotService.getAllHouses}
+        renderItem={({ name }) => (
           <>
-            <span>
-              {name} ({gender}){" "}
-            </span>
+            <span>{name} </span>
             <button>heyyou</button>
           </>
         )}
       />
     );
-    const charDetails = (
+    const houseDetails = (
       //   <>
       //     <CharDetails charId={this.state.charSelected}>
       //       <Field field="gender" label="Gender"></Field>
@@ -60,18 +58,15 @@ export default class CharacterPage extends Component {
       <>
         <ItemDetails
           itemId={this.state.itemSelected}
-          getItem={this.gotService.getCharacter}
+          getItem={this.gotService.getHouse}
         >
-          <Field field="gender" label="Gender"></Field>
-          <Field field="born" label="Born"></Field>
-          <Field field="died" label="Died"></Field>
-          <Field field="culture" label="Culture"></Field>
+          <Field field="name" label="name"></Field>
         </ItemDetails>
       </>
     );
     if (this.state.error) {
       return <ErrorMessage />;
     }
-    return <RowBlock left={itemList} right={charDetails}></RowBlock>;
+    return <RowBlock left={itemList} right={houseDetails}></RowBlock>;
   }
 }

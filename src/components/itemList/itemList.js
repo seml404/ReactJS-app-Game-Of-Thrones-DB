@@ -6,6 +6,7 @@ export default class ItemList extends Component {
     // charList: null,
     itemList: null,
   };
+
   // componentDidMount() {
   //   this.gotService.getAllCharacters().then((charList) => {
   //     this.setState({ charList });
@@ -14,6 +15,7 @@ export default class ItemList extends Component {
 
   componentDidMount() {
     const { getData } = this.props;
+    console.log("mounted");
     getData().then((itemList) => {
       this.setState({ itemList });
     });

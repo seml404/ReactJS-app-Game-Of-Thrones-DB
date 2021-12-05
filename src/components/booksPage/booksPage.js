@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import ErrorMessage from "../errorMessage";
 import ItemList from "../itemList";
-// import CharDetails from "../charDetails";
 import ItemDetails from "../itemDetails/";
 import GotService from "../../services/gotService";
 import RowBlock from "../rowBlock";
 import { Field } from "../itemDetails";
-export default class CharacterPage extends Component {
+export default class BooksPage extends Component {
   constructor(props) {
     super(props);
     this.selectItem = this.selectItem.bind(this);
@@ -14,6 +13,11 @@ export default class CharacterPage extends Component {
   state = {
     error: false,
     itemSelected: null,
+  };
+
+  selectItem = (i) => {
+    console.log(i);
+    this.setState({ itemSelected: i });
   };
 
   componentDidCatch() {
@@ -27,16 +31,11 @@ export default class CharacterPage extends Component {
 
   gotService = new GotService();
 
-  selectItem = (i) => {
-    console.log(i);
-    this.setState({ itemSelected: i });
-  };
-
   render() {
     const itemList = (
       <ItemList
         onItemSelected={this.selectItem}
-        getData={this.gotService.getAllCharacters}
+        getData={this.gotService.getAllBooks}
         renderItem={({ name, gender }) => (
           <>
             <span>
@@ -47,7 +46,7 @@ export default class CharacterPage extends Component {
         )}
       />
     );
-    const charDetails = (
+    const bookDetails = (
       //   <>
       //     <CharDetails charId={this.state.charSelected}>
       //       <Field field="gender" label="Gender"></Field>
@@ -60,18 +59,16 @@ export default class CharacterPage extends Component {
       <>
         <ItemDetails
           itemId={this.state.itemSelected}
-          getItem={this.gotService.getCharacter}
+          getItem={this.gotService.getBook}
         >
-          <Field field="gender" label="Gender"></Field>
-          <Field field="born" label="Born"></Field>
-          <Field field="died" label="Died"></Field>
-          <Field field="culture" label="Culture"></Field>
+          <Field field="name" label="name"></Field>
+          <Field field="url" label="url"></Field>
         </ItemDetails>
       </>
     );
     if (this.state.error) {
       return <ErrorMessage />;
     }
-    return <RowBlock left={itemList} right={charDetails}></RowBlock>;
+    return <RowBlock left={itemList} right={bookDetails}></RowBlock>;
   }
 }

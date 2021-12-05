@@ -8,7 +8,7 @@ export default class GotService {
       throw new Error(`this is custom error text, status ${res.status}`);
     }
     const data = await res.json();
-    console.log(`this is data from funcitoin:`);
+    console.log(`this is data from functioning:`);
     console.dir(data);
     return data;
   };
@@ -17,24 +17,39 @@ export default class GotService {
     const result = await this.getResourse(
       `/characters?page=${Math.floor(Math.random() * 100)}&pageSize=10`
     );
-    return result.map(this._transformCharacter);
+    return result.map(this._transformInfo);
   };
 
   getCharacter = async (id) => {
     const result = await this.getResourse(`/characters/${id}`);
-    return this._transformCharacter(result);
+    return this._transformInfo(result);
   };
   getAllHouses = async () => {
-    return this.getResourse(`/houses`);
+    // return this.getResourse(`/houses`);
+    const result = await this.getResourse(
+      `/houses?page=${Math.floor(Math.random() * 20)}&pageSize=10`
+    );
+    return result.map(this._transformInfo);
   };
   getHouse = async (id) => {
-    return this.getResourse(`/houses/${id}`);
+    // return this.getResourse(`/houses/${id}`);
+    const result = await this.getResourse(`/houses/${id}`);
+    console.log(result);
+    return this._transformInfo(result);
   };
   getAllBooks = async () => {
-    return this.getResourse(`/books`);
+    const result = await this.getResourse(`/books?page=1&pageSize=12`);
+    console.log(result);
+    return result.map(this._transformInfo);
+    // return this.getResourse(`/books`);
+  };
+  getBook = async (id) => {
+    const result = await this.getResourse(`/books/${id}`);
+    console.log(result);
+    return this._transformInfo(result);
   };
 
-  _transformCharacter = (res) => {
+  _transformInfo = (res) => {
     for (let key in res) {
       if (!res[key]) {
         res[key] = "No info";

@@ -10,3 +10,9 @@
   margin: 0 auto;
   background-color: #fff;
 }
+
+
+.content-wrapper {
+  background-color: #fff;
+  max-width: 200px;
+}

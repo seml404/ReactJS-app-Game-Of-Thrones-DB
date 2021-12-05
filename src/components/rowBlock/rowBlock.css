@@ -1,0 +1,9 @@
+.block-wrapper {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.block-item {
+    flex: 0 0 50%;
+    background-color: #fff;
+}
