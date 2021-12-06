@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ErrorMessage from "../errorMessage";
 import ItemList from "../itemList";
 // import CharDetails from "../charDetails";
-import ItemDetails from "../itemDetails/";
+import ItemDetails from "../itemDetails";
 import GotService from "../../services/gotService";
 import RowBlock from "../rowBlock";
 import { Field } from "../itemDetails";

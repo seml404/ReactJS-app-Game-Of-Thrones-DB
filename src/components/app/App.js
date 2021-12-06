@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Col, Row, Container } from "reactstrap";
+import { Button } from "reactstrap";
 import "./App.css";
 import Header from "../header";
 import RandomChar from "../randomChar";
@@ -7,13 +7,19 @@ import RandomChar from "../randomChar";
 // import CharDetails from "../charDetails";
 // import ErrorMessage from "../errorMessage";
 import GotService from "../../services/gotService";
-import CharacterPage from "../characterPage";
-import BooksPage from "../booksPage";
-import HousesPage from "../housesPage";
+import {
+  BooksPageWithNavigate,
+  HousesPage,
+  CharacterPage,
+  ItemSelected,
+  BooksItem,
+} from "../pages";
+import { Routes, Route } from "react-router-dom";
+
 // router
-
-import { Routes, Route, Link } from "react-router-dom";
-
+// function DefineParams() {
+//   return useParams();
+// }
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -25,6 +31,11 @@ export default class App extends Component {
     this.selectItem = this.selectItem.bind(this);
     this.toggleRandomChar = this.toggleRandomChar.bind(this);
   }
+
+  // componentDidMount() {
+  //   const { id } = this.props.params;
+  //   this.setState({ id });
+  // }
 
   selectItem = (i) => {
     console.log(i);
@@ -52,6 +63,7 @@ export default class App extends Component {
       return newState;
     });
   }
+
   render() {
     const { showRandom } = this.state;
     const content = showRandom ? (
@@ -150,10 +162,11 @@ export default class App extends Component {
           </Button>
           <Routes>
             <Route path="/characters" element={<CharacterPage />}></Route>
-            <Route path="/books" element={<BooksPage />}></Route>
             <Route path="/houses" element={<HousesPage />}></Route>
-            {/* <CharacterPage /> */}
+            <Route path="/books" element={<BooksPageWithNavigate />}></Route>
+            <Route path="/books/:bookId" element={<BooksItem />}></Route>
           </Routes>
+          {/* <ItemSelected /> */}
           {/* 
           <Row>
             <Col md="6">

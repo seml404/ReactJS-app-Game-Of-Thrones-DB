@@ -1,6 +1,7 @@
 .block-wrapper {
     display: flex;
     justify-content: space-evenly;
+    background-color: #fff;
 }
 
 .block-item {
